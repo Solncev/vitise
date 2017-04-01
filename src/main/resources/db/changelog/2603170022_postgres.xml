@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2603170022_1" author="svintenok">
+        <dropForeignKeyConstraint baseTableName="events_users" constraintName="event_id_fk"/>
+    </changeSet>
+    <changeSet id="2603170022_2" author="svintenok">
+        <addForeignKeyConstraint baseTableName="events_users"
+                                 baseColumnNames="event_id"
+                                 constraintName="event_id_fk"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedTableName="event"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

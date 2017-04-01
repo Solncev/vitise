@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2603172115_1" author="korgutlova">
+        <dropNotNullConstraint tableName="users" columnName="is_active"/>
+    </changeSet>
+    <!--Добавление каскадного удаления-->
+    <changeSet id="2603172115_2" author="korgutlova">
+        <dropForeignKeyConstraint baseTableName="users_status" constraintName="usersid_users_fk"/>
+    </changeSet>
+    <changeSet id="2603172115_3" author="korgutlova">
+        <addForeignKeyConstraint baseTableName="users_status"
+                                 baseColumnNames="usersid"
+                                 constraintName="usersid_users_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+    <changeSet id="2603172115_4" author="korgutlova">
+        <dropForeignKeyConstraint baseTableName="students" constraintName="id_student_users_fk"/>
+        <dropForeignKeyConstraint baseTableName="students" constraintName="groupsid_groups_fk"/>
+        <dropForeignKeyConstraint baseTableName="colleagues" constraintName="id_sender_colleagues_id_users"/>
+        <dropForeignKeyConstraint baseTableName="colleagues" constraintName="id_receiver_colleagues_id_users"/>
+        <dropForeignKeyConstraint baseTableName="event" constraintName="author_id_user_fk"/>
+        <dropForeignKeyConstraint baseTableName="newses" constraintName="authot_id_users_id_fk"/>
+    </changeSet>
+    <changeSet id="2603172115_5" author="korgutlova">
+        <addForeignKeyConstraint baseTableName="students"
+                                 baseColumnNames="groupsid"
+                                 constraintName="groupsid_groups_fk"
+                                 referencedTableName="groups"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="students"
+                                 baseColumnNames="id_student"
+                                 constraintName="id_student_users_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="colleagues"
+                                 baseColumnNames="id_sender"
+                                 constraintName="id_sender_colleagues_id_users"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="colleagues"
+                                 baseColumnNames="id_receiver"
+                                 constraintName="id_receiver_colleagues_id_users"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="event"
+                                 baseColumnNames="author_id"
+                                 constraintName="author_id_user_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="newses"
+                                 baseColumnNames="author_id"
+                                 constraintName="author_id_users_id_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

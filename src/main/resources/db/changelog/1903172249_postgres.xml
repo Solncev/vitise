@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="1903172249_1" author="korgutlova">
+        <addColumn tableName="semester">
+            <column name="semester" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1903172249_2" author="korgutlova">
+        <dropColumn tableName="semester" columnName="semester"/>
+        <addColumn tableName="semester">
+            <column name="semester" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1903172249_3" author="korgutlova">
+        <dropColumn tableName="users" columnName="sole"/>
+    </changeSet>
+</databaseChangeLog>

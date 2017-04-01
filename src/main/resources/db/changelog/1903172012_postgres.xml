@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="1903172012_1" author="korgutlova">
+        <createTable tableName="semester">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1903172012_2" author="korgutlova">
+        <createTable tableName="groups">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="semesterid" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1903172012_3" author="korgutlova">
+        <addForeignKeyConstraint baseTableName="groups"
+                                 baseColumnNames="semesterid"
+                                 constraintName="semesterid_semester_fk"
+                                 referencedTableName="semester"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1903172012_4" author="korgutlova">
+        <createTable tableName="students">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_student" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="groupsid" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1903172012_5" author="korgutlova">
+        <addForeignKeyConstraint baseTableName="students"
+                                 baseColumnNames="id_student"
+                                 constraintName="id_student_users_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1903172012_6" author="korgutlova">
+        <addForeignKeyConstraint baseTableName="students"
+                                 baseColumnNames="groupsid"
+                                 constraintName="groupsid_groups_fk"
+                                 referencedTableName="groups"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

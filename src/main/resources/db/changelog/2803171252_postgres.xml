@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2803171252_1" author="solncev">
+        <createTable tableName="direction_of_scientific_activity">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="2803171252_2" author="solncev">
+        <createTable tableName="direction_of_scientific_activity_users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="direction_of_scientific_activity_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2803171252_3" author="solncev">
+        <addForeignKeyConstraint baseTableName="direction_of_scientific_activity_users"
+                                 baseColumnNames="user_id"
+                                 constraintName="users_id_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="direction_of_scientific_activity_users"
+                                 baseColumnNames="direction_of_scientific_activity_id"
+                                 constraintName="direction_of_scientific_activity_id_fk"
+                                 referencedTableName="direction_of_scientific_activity"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="2803171252_4" author="solncev">
+        <addUniqueConstraint tableName="direction_of_scientific_activity_users"
+                             columnNames="direction_of_scientific_activity_id, user_id"/>
+    </changeSet>
+</databaseChangeLog>

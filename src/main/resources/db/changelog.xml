@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <include file="db/changelog/1303171737_postgres.xml"/>
+    <include file="db/changelog/1903172004_postgres.xml"/>
+    <include file="db/changelog/1903172012_postgres.xml"/>
+    <include file="db/changelog/1903172158_postgres.xml"/>
+    <include file="db/changelog/1903172249_postgres.xml"/>
+    <include file="db/changelog/2203171745_postgres.xml"/>
+    <include file="db/changelog/2203171913_postgres.xml"/>
+    <include file="db/changelog/2203171640_postgres.xml"/>
+    <include file="db/changelog/2603172115_postgres.xml"/>
+    <include file="db/changelog/2403172047_postgres.xml"/>
+    <include file="db/changelog/2603170022_postgres.xml"/>
+    <include file="db/changelog/2503172001_postgres.xml"/>
+    <include file="db/changelog/2703171210_postgres.xml"/>
+    <include file="db/changelog/2803171252_postgres.xml"/>
+</databaseChangeLog>
