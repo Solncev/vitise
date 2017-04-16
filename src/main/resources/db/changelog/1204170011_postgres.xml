@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="1204170011_1" author="korgutlova">
+        <dropColumn tableName="users" columnName="telephone_number"/>
+        <dropColumn tableName="users" columnName="photo_name"/>
+        <addColumn tableName="users">
+            <column name="telephone_number" type="varchar(30)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="users">
+            <column name="photo_name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1204170011_2" author="korgutlova">
+        <dropColumn tableName="event" columnName="text"/>
+        <dropColumn tableName="news" columnName="text"/>
+        <dropColumn tableName="users_messages" columnName="message"/>
+        <dropColumn tableName="conversation_messages" columnName="text"/>
+    </changeSet>
+    <changeSet id="1204170011_3" author="korgutlova">
+        <addColumn tableName="event">
+            <column name="text" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="news">
+            <column name="text" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="users_messages">
+            <column name="message" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="conversation_messages">
+            <column name="text" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

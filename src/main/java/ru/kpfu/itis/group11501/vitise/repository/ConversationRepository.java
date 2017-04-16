@@ -1,7 +1,7 @@
 package ru.kpfu.itis.group11501.vitise.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.kpfu.itis.group11501.vitise.model.Conversation;
+import ru.kpfu.itis.group11501.vitise.model.conversation.Conversation;
 
 /**
  * Author: Svintenok Kate
@@ -10,4 +10,5 @@ import ru.kpfu.itis.group11501.vitise.model.Conversation;
  * Project: vITISe
  */
 public interface ConversationRepository extends JpaRepository<Conversation, Long> {
+
 }

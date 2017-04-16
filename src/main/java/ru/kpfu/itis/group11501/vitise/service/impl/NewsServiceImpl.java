@@ -40,4 +40,9 @@ public class NewsServiceImpl implements NewsService {
     public List<News> getAllByAuthor(User author) {
         return newsRepository.getAllByAuthorId(author.getId());
     }
+
+    @Override
+    public List<News> getAllPublicNews() {
+        return newsRepository.getAllByIsPersonal(false);
+    }
 }

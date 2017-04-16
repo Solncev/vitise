@@ -1,8 +1,7 @@
 package ru.kpfu.itis.group11501.vitise.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.kpfu.itis.group11501.vitise.model.ConversationMember;
-import ru.kpfu.itis.group11501.vitise.model.User;
+import ru.kpfu.itis.group11501.vitise.model.conversation.ConversationMember;
 
 import java.util.List;
 
@@ -13,7 +12,12 @@ import java.util.List;
  * Project: vITISe
  */
 public interface ConversationMemberRepository extends JpaRepository<ConversationMember, Long> {
-    List<ConversationMember> findByConversationIdAndIsActive(Long id, Boolean isActive);
-    List<ConversationMember> findByUserIdAndIsActive(Long id, boolean isActive);
+
+    List<ConversationMember> findByConversationIdAndActiveStatus(Long id, int activeStatus);
+
+    List<ConversationMember> findByUserIdAndActiveStatus(Long id, int activeStatus);
+
+    List<ConversationMember> findByUserId(Long id);
+
     ConversationMember findOneByUserIdAndConversationId(Long userId, Long conversationId);
 }

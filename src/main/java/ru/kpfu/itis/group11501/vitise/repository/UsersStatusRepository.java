@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface UsersStatusRepository extends JpaRepository<UsersStatus, Long> {
     List<UsersStatus> findAllStatusIdByUserId(Long id);
+
+    List<UsersStatus> findAllByStatusId(Long id);
 }

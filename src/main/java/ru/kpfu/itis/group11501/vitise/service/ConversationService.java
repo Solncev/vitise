@@ -1,9 +1,10 @@
 package ru.kpfu.itis.group11501.vitise.service;
 
-import ru.kpfu.itis.group11501.vitise.model.Conversation;
-import ru.kpfu.itis.group11501.vitise.model.ConversationMember;
-import ru.kpfu.itis.group11501.vitise.model.ConversationMessage;
 import ru.kpfu.itis.group11501.vitise.model.User;
+import ru.kpfu.itis.group11501.vitise.model.conversation.Conversation;
+import ru.kpfu.itis.group11501.vitise.model.conversation.ConversationMember;
+import ru.kpfu.itis.group11501.vitise.model.conversation.ConversationMessage;
+import ru.kpfu.itis.group11501.vitise.model.conversation.enums.ActiveStatusName;
 
 import java.util.List;
 
@@ -14,15 +15,27 @@ import java.util.List;
  * Project: vITISe
  */
 public interface ConversationService {
+    Conversation createConversation(String name, User creator, List<User> members);
 
     void saveConversation(Conversation conversation);
-    Conversation createConversation(String name, User creator, List<User> members);
-    void addMember(Conversation conversation, User user);
-    void addMessage(ConversationMessage conversationMessage);
+
     Conversation getConversation(Long id);
+
+    Conversation getConversationWithInfo(Long id, User user);
+
     List<Conversation> getConversations(User user);
+
+    void addMember(Conversation conversation, User user);
+
+    void memberChangeStatus(ConversationMember member, ActiveStatusName status);
+
     ConversationMember getMember(User currentUser, Conversation conversation);
-    void deleteMember(ConversationMember member);
-    void addMember(ConversationMember member);
+
     List<User> getAvailableUsers(Conversation conversation);
+
+    void addMessage(ConversationMessage conversationMessage);
+
+    void updateReadingLog(ConversationMember member);
+
+    int newMessagesCount(User user);
 }

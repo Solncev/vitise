@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="0104171900_1" author="svintenok">
+        <createTable tableName="users_conversation_message_reading_log">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="conversation_member_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="datetime" defaultValueDate="current_datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="0104171900_2" author="svintenok">
+        <createTable tableName="users_state_changing_log">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="conversation_member_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="datetime" defaultValueDate="current_datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="0104171900_3" author="svintenok">
+        <addForeignKeyConstraint baseTableName="users_conversation_message_reading_log"
+                                 baseColumnNames="conversation_member_id"
+                                 constraintName="conversation_member_id_fk"
+                                 onDelete="CASCADE"
+                                 referencedTableName="conversation_user_list"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="users_state_changing_log"
+                                 baseColumnNames="conversation_member_id"
+                                 constraintName="conversation_member_id_fk"
+                                 onDelete="CASCADE"
+                                 referencedTableName="conversation_user_list"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+    <changeSet id="0104171900_4" author="svintenok">
+        <dropNotNullConstraint tableName="conversation_user_list"
+                               columnDataType="boolean"
+                               columnName="is_active"/>
+    </changeSet>
+    <changeSet id="0104171900_5" author="svintenok">
+        <dropColumn tableName="conversation_user_list"
+                    columnName="is_active"/>
+        <addColumn tableName="conversation_user_list">
+            <column name="active_status" type="bigint" defaultValue="0">
+                <constraints nullable="false"
+                             checkConstraint="CHECK (active_status &gt;= 1 AND active_status &lt;= 3)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="0104171900_6" author="svintenok">
+        <addColumn tableName="conversation">
+            <column name="creation_date" type="datetime" defaultValueDate="current_datetime"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

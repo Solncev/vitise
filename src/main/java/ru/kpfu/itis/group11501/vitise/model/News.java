@@ -7,7 +7,7 @@ import java.util.Date;
  * Created by Марат on 22.03.2017.
  */
 @Entity
-@Table(name = "newses")
+@Table(name = "news")
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,15 +16,21 @@ public class News {
     private String topic;
 
     private String text;
-
-    private Date date;
-
+    @Column(name = "pub_date")
+    private Date pubDate;
     @ManyToOne
     @JoinColumn(name = "author_id")
     private User author;
-
     @Column(name = "is_personal")
     private boolean isPersonal;
+
+    public Date getPubDate() {
+        return pubDate;
+    }
+
+    public void setPubDate(Date pubDate) {
+        this.pubDate = pubDate;
+    }
 
     public boolean isPersonal() {
         return isPersonal;
@@ -56,14 +62,6 @@ public class News {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public User getAuthor() {

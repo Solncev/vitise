@@ -24,4 +24,7 @@ public interface ColleaguesRepository extends JpaRepository<Colleagues, Long> {
 
     @Query("select c from Colleagues c where (c.receiver = :user or c.sender = :user) and c.isActive = true")
     List<Colleagues> getAllColleagues(@Param("user") User user);
+
+    @Query("select count(c) from Colleagues c where c.receiver = :user and c.isActive = false")
+    int getRequestsCount(@Param("user") User user);
 }

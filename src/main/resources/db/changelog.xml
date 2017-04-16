@@ -19,4 +19,8 @@
     <include file="db/changelog/2503172001_postgres.xml"/>
     <include file="db/changelog/2703171210_postgres.xml"/>
     <include file="db/changelog/2803171252_postgres.xml"/>
+    <include file="db/changelog/0504172211_postgres.xml"/>
+    <include file="db/changelog/0104171900_postgres.xml"/>
+    <include file="db/changelog/1204170011_postgres.xml"/>
+    <include file="db/changelog/1404172159_postgres.xml"/>
 </databaseChangeLog>

@@ -29,10 +29,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/sign_in", "/sign_up/**").anonymous()
                 .antMatchers("/event_create", "/events/**", "/colleagues/**",
-                        "/user/**", "/messages/**", "/news/**", "/profile/**")
+                        "/user/**", "/messages/**", "/news/**", "/profile/**", "/support")
                 .hasAnyRole("STUDENT", "ADMIN", "WORKER", "DEANERY")
                 .antMatchers("/sign_up_request/**")
-                .hasAnyRole("DEANERY", "ADMIN");
+                .hasAnyRole("DEANERY", "ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**")
+                .hasAnyRole("ADMIN");
 
 
         http.csrf().disable()

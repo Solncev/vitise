@@ -1,5 +1,7 @@
 package ru.kpfu.itis.group11501.vitise.model;
 
+import ru.kpfu.itis.group11501.vitise.model.enums.StatusName;
+
 import javax.persistence.*;
 
 @Entity
@@ -33,6 +35,12 @@ public class User {
 
     @Column(name = "pass_must_be_changed")
     private boolean passMustBeChanged;
+
+    @Transient
+    private Group group;
+
+    @Transient
+    private StatusName status;
 
     public User() {
     }
@@ -123,5 +131,29 @@ public class User {
 
     public void setPassMustBeChanged(boolean passMustBeChanged) {
         this.passMustBeChanged = passMustBeChanged;
+    }
+
+    public boolean equals(Object obj) {
+        return obj instanceof User && this.getId().equals(((User) obj).getId());
+    }
+
+    public String getFullName() {
+        return this.surname + " " + this.name + " " + this.thirdName;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public StatusName getStatusName() {
+        return status;
+    }
+
+    public void setStatusName(StatusName status) {
+        this.status = status;
     }
 }

@@ -1,0 +1,107 @@
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../font-awesome/fonts/fontawesome-webfont.eot?v=4.7.0');
+    src: url('../font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('../font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('../font-awesome/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('../font-awesome/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), url('../font-awesome/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    position: relative;
+    min-height: 100vh;
+}
+
+body {
+    margin-top: 50px;
+    font-family: Myriad Pro;
+}
+
+.header {
+    background-color: #1b7181;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+}
+
+.logo {
+    width: 220px;
+    margin: 2px 3%;
+}
+
+.header a {
+    color: white !important;
+    font-size: 18px;
+}
+
+.header a:hover {
+    background-color: #1f8091 !important;
+}
+
+.header a:focus {
+    background-color: #1b7181 !important;
+}
+
+.dropdown-menu {
+    /*background-color: #1b7181 !important;*/
+    background-color: rgba(27, 113, 139, 0.95) !important;
+}
+
+.padded-right {
+    padding-left: 50px;
+    padding-right: 14px;
+}
+
+.main-block {
+    background-color: #c4e2e1;
+    min-height: calc(100vh - 100px);
+    overflow: auto;
+}
+
+.clear {
+    clear: both;
+}
+
+.footer {
+    background-color: #1b7181;
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    /*bottom: 0;*/
+    overflow: hidden;
+}
+
+.footer-text {
+    color: white;
+    margin: 17px 0 0 4%;
+    float: left;
+}
+
+.social {
+    float: right;
+    margin: 5px 3%;
+}
+
+.img-link {
+    margin-right: 20px;
+}
+
+@media all and (max-width: 767px) {
+    .footer-text {
+        margin: 17px 0 0 1%;
+        float: left;
+        font-size: 2vw;
+    }
+
+    .social {
+        margin: 5px 1%;
+    }
+
+    .img-link {
+        margin-right: 5px;
+    }
+
+    .signup-btn {
+        font-size: 3.1vw;
+    }
+}

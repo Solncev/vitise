@@ -39,7 +39,7 @@ public class SignUpController {
         this.groupService = groupService;
         this.statusService = statusService;
         this.userFormToUserTransformer = new UserFormToUserTransformer();
-        this.statusList = new ArrayList<>();
+        this.statusList = new ArrayList<StatusName>();
         statusList.add(StatusName.TEACHER);
         statusList.add(StatusName.RESEARCHER);
         statusList.add(StatusName.ASSISTANT);

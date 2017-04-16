@@ -49,4 +49,82 @@
         <addUniqueConstraint tableName="direction_of_scientific_activity_users"
                              columnNames="direction_of_scientific_activity_id, user_id"/>
     </changeSet>
+
+
+    <changeSet id="2803171252_5" author="solncev">
+        <renameTable oldTableName="newses" newTableName="news"/>
+    </changeSet>
+
+    <changeSet id="2803171252_6" author="solncev">
+        <createTable tableName="news_files">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="filename" type="varchar(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="news_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2803171252_7" author="solncev">
+        <addForeignKeyConstraint baseTableName="news_files"
+                                 baseColumnNames="news_id"
+                                 constraintName="news_id_fk"
+                                 referencedTableName="news"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"/>
+    </changeSet>
+
+
+    <changeSet id="2803171252_8" author="solncev">
+        <createTable tableName="users_messages_files">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="filename" type="varchar(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="users_messages_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2803171252_9" author="solncev">
+        <addForeignKeyConstraint baseTableName="users_messages_files"
+                                 baseColumnNames="users_messages_id"
+                                 constraintName="users_messages_id_fk"
+                                 referencedTableName="users_messages"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"/>
+    </changeSet>
+
+    <changeSet id="2803171252_10" author="solncev">
+        <createTable tableName="conversation_messages_files">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="filename" type="varchar(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="conversation_messages_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2803171252_11" author="solncev">
+        <addForeignKeyConstraint baseTableName="conversation_messages_files"
+                                 baseColumnNames="conversation_messages_id"
+                                 constraintName="conversation_messages_id_fk"
+                                 referencedTableName="conversation_messages"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"/>
+    </changeSet>
 </databaseChangeLog>

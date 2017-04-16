@@ -8,7 +8,6 @@ import ru.kpfu.itis.group11501.vitise.repository.ColleaguesRepository;
 import ru.kpfu.itis.group11501.vitise.repository.UserRepository;
 import ru.kpfu.itis.group11501.vitise.service.ColleaguesService;
 
-
 import javax.persistence.NoResultException;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,13 +55,18 @@ public class ColleaguesServiceImpl implements ColleaguesService {
     @Override
     public List<User> getColleagueUsers(User user) {
         List<User> colleagues = new ArrayList<>();
-        for (Colleagues colleague: this.getAllColleagues(user)){
+        for (Colleagues colleague : this.getAllColleagues(user)) {
             if (user.getId() != colleague.getReceiver().getId())
                 colleagues.add(colleague.getReceiver());
             else
                 colleagues.add(colleague.getSender());
         }
         return colleagues;
+    }
+
+    @Override
+    public int getRequestsCount(User user) {
+        return colleaguesRepository.getRequestsCount(user);
     }
 
     @Override

@@ -1,0 +1,341 @@
+.line0 {
+    overflow: hidden;
+}
+
+.line1 {
+    margin-top: 25px;
+    overflow: hidden;
+}
+
+.photo-block {
+    border-radius: 5px;
+    background-color: white;
+    height: 300px;
+}
+
+.profile-photo {
+    height: 100%;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+}
+
+.photo-border {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+    padding-top: 10px;
+    height: 240px;
+}
+
+.info-block {
+    padding-left: 20px;
+    border-radius: 5px;
+    background-color: white;
+    min-height: 300px;
+    overflow: auto;
+}
+
+.info-block p {
+    font-size: 18px;
+}
+
+#add-profile-photo {
+    display: none;
+}
+
+.upload-btn {
+    padding-top: 10px;
+    text-align: center;
+    border: none;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #1b7181;
+    color: white;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.about-labels {
+    color: #414040;
+    font-size: 18px;
+}
+
+.about-text {
+    margin-left: 20px;
+    color: #1b7181;
+}
+
+.modify-btn {
+    border: none;
+    width: 50%;
+    float: right;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: #1b7181;
+    color: white;
+    height: 40px;
+    border-radius: 5px;
+    vertical-align: bottom;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+}
+
+.post-block {
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    padding-top: 5px;
+}
+
+.round-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+    /*margin: 0 auto;*/
+}
+
+.round-photo img {
+    height: 100%;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+    min-width: 100%;
+}
+
+.post-input {
+    border: 1px solid #eeeeee;
+    margin-top: 5px;
+    margin-bottom: 3px;
+    display: inline;
+    width: calc(100% - 65px);
+    height: auto;
+    margin-left: 10px;
+    resize: none;
+    max-height: 400px;
+}
+
+#add-photo-btn {
+    display: none;
+}
+
+#buttons {
+    overflow: hidden;
+    display: none;
+    position: relative;
+}
+
+#news-buttons {
+    overflow: hidden;
+}
+
+.add-photo-label {
+    height: 40px;
+    background-color: white;
+    color: #1b7181;
+    padding: 4px 20px;
+    float: right;
+    margin-right: 10px;
+}
+
+#submit-btn {
+    display: inline;
+    background-color: #1b7181;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px;
+    height: 40px;
+    float: right;
+}
+
+.post-info {
+    width: calc(100% - 65px);
+    padding-top: 5px;
+    display: inline-block;
+    color: #1b7181;
+    margin-left: 10px;
+}
+
+.round-photo {
+    margin-top: 3px;
+}
+
+.post-info p {
+    margin-top: -15px;
+}
+
+.post-info h3 {
+    display: inline;
+    margin-top: 5px;
+}
+
+.post-info > span {
+    float: right;
+    display: inline;
+}
+
+.post-info h3 {
+    display: inline-block;
+    max-width: calc(100% - 105px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.post {
+    margin-bottom: 5px;
+}
+
+.post-news {
+    margin-bottom: 15px;
+}
+
+.post-content {
+    font-size: 16px;
+}
+
+.news-nav {
+    background-color: white;
+    border-radius: 5px;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.news-nav h4 {
+    cursor: pointer;
+    padding-left: 15px;
+    margin: 0;
+    line-height: 40px;
+}
+
+.news-nav h4:first-child {
+    border-radius: 5px;
+}
+
+.news-nav h4:last-child {
+    border-radius: 5px;
+}
+
+.news-nav h4:hover {
+    background-color: #e3fefb;
+}
+
+#news-submit-btn {
+    display: inline;
+    background-color: #1b7181;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 20px;
+    height: 40px;
+    float: right;
+    margin-bottom: 10px;
+}
+
+#news-submit-btn:hover {
+    background-color: #1b8292;
+}
+
+.news-input input {
+    border: none;
+    width: 100%;
+}
+
+.checkbox {
+    display: none;
+}
+
+.checkbox + label {
+    margin-left: 61px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: rgb(249, 249, 249);
+    border-radius: 5px;
+    height: 18px;
+    width: 18px;
+}
+
+.checkbox + label::after {
+    content: ".";
+    display: inline-block;
+    color: rgba(255, 255, 255, 0);
+    border: 1px solid #dfdfdf;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    height: 18px;
+    width: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: inherit;
+}
+
+/*.check-label {*/
+/*padding-bottom: 2px;*/
+/*}*/
+
+.checkbox:checked + label::after {
+    color: gray;
+    content: "\f00c";
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    cursor: pointer;
+    font-size: 14px;
+    height: 18px;
+    width: 18px;
+    border-radius: 5px;
+    text-decoration: inherit;
+    padding-left: 1px;
+}
+
+.remember-sign {
+    padding-left: 3px;
+    color: #767676;
+    font-size: 16px;
+    vertical-align: top;
+}
+
+input {
+    border-radius: 5px;
+    border: 1px solid darkgray;
+    color: #707070;
+}
+
+.datetime {
+    /*display: inline-block;*/
+    margin: 5px 0 10px 61px;
+}
+
+.bottom-buttons {
+    display: inline-block;
+    float: right;
+    /*width: 100%;*/
+    /*position: absolute;*/
+    /*bottom: 15px;*/
+    /*right: 15px;*/
+}
+
+.datetime {
+    display: inline-block;
+}
+
+.delete-btn {
+    margin: 5px 0;
+    background: none;
+    color: #b2b2b2;
+    border: none;
+    font-size: 14px;
+    padding: 3px 10px;
+    float: right;
+    /*padding-top: 2px;*/
+}

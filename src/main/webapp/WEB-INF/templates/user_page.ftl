@@ -19,8 +19,12 @@
     <p>Name: ${userPage.name}</p>
     <p>Surname: ${userPage.surname}</p>
 
+    <img src="${userPage.photoName}" alt="missing">
+
     <p><a href="/user/${user.id}/events">Cобытия</a></p>
-    <p><a href="/messages/user/${userPage.id}">Перейти в диалог</a></p>
+    <form action="/messages/dialog/create/${userPage.id}" method="post">
+        <input type="submit" value="Написать сообщение"/>
+    </form>
 <#if user.id == userPage.id>
     <p><a href="/profile/change">изменить личные данные</a></p>
     <@sf.form role="form" action="/news" method="post" modelAttribute="news">

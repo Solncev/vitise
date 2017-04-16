@@ -16,4 +16,6 @@ public interface NewsService {
     News get(Long id);
 
     List<News> getAllByAuthor(User author);
+
+    List<News> getAllPublicNews();
 }

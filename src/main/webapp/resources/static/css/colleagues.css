@@ -1,0 +1,256 @@
+.line0 {
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.line1 {
+    margin-top: 25px;
+    overflow: hidden;
+}
+
+.photo-block {
+    border-radius: 5px;
+    background-color: white;
+    height: 300px;
+}
+
+.profile-photo {
+    height: 100%;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+}
+
+.photo-border {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+    padding-top: 10px;
+    height: 240px;
+}
+
+.info-block {
+    padding-left: 20px;
+    border-radius: 5px;
+    background-color: white;
+    min-height: 300px;
+    overflow: auto;
+}
+
+.info-block p {
+    font-size: 18px;
+}
+
+#add-profile-photo {
+    display: none;
+}
+
+.upload-btn {
+    padding-top: 10px;
+    text-align: center;
+    border: none;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #1b7181;
+    color: white;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.about-labels {
+    color: #414040;
+    font-size: 18px;
+}
+
+.about-text {
+    margin-left: 20px;
+    color: #1b7181;
+}
+
+.modify-btn {
+    border: none;
+    width: 50%;
+    float: right;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: #1b7181;
+    color: white;
+    height: 40px;
+    border-radius: 5px;
+    vertical-align: bottom;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+}
+
+.post-block {
+    margin-bottom: 5px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+™
+.round-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+    /*margin: 0 auto;*/
+}
+
+.round-photo img {
+    height: 100%;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+    min-width: 100%;
+}
+
+.post-input {
+    border: none;
+    margin-top: 10px;
+    display: inline;
+    width: calc(100% - 65px);
+    height: auto;
+    margin-left: 10px;
+    resize: none;
+    max-height: 400px;
+}
+
+#add-photo-btn {
+    display: none;
+}
+
+#buttons {
+    overflow: hidden;
+    display: none;
+}
+
+#news-buttons {
+    overflow: hidden;
+}
+
+.add-photo-label {
+    height: 40px;
+    background-color: white;
+    color: #1b7181;
+    padding: 4px 20px;
+    float: right;
+    margin-right: 10px;
+}
+
+#submit-btn {
+    display: inline;
+    background-color: #1b7181;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px;
+    height: 40px;
+    float: right;
+}
+
+.post-info {
+    width: calc(100% - 276px);
+    min-width: 190px;
+    padding-top: 5px;
+    display: inline-block;
+    color: #1b7181;
+    margin-left: 10px;
+}
+
+.round-photo {
+    margin-top: 3px;
+}
+
+.post-info p {
+    margin-top: -15px;
+}
+
+.post-info h3 {
+    font-size: 20px;
+    display: inline;
+    margin-top: 13px;
+}
+
+.post-info > span {
+    float: right;
+    display: inline;
+}
+
+.post-info h3 {
+    display: inline-block;
+    max-width: calc(100% - 10px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.post {
+    margin-bottom: 5px;
+}
+
+.post-news {
+    margin-bottom: 15px;
+}
+
+.post-content {
+    font-size: 16px;
+}
+
+.news-nav {
+    background-color: white;
+    border-radius: 5px;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.news-nav h4 {
+    font-size: 15px;
+    cursor: pointer;
+    padding-left: 8px;
+    margin: 0;
+    line-height: 40px;
+}
+
+.news-nav h4:first-child {
+    border-radius: 5px;
+}
+
+.news-nav h4:last-child {
+    border-radius: 5px;
+}
+
+.news-nav h4:hover {
+    background-color: #e3fefb;
+}
+
+#news-submit-btn {
+    display: inline;
+    background-color: #1b7181;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 11px 20px;
+    height: 40px;
+    float: right;
+    margin: 11px 2px;
+    /*margin-top: 11px;*/
+}
+
+#news-submit-btn:hover {
+    background-color: #1b8292;
+}
+
+.news-input input {
+    border: none;
+    width: 100%;
+}
+
+form {
+    display: inline;
+}

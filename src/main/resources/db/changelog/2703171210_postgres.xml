@@ -74,7 +74,7 @@
             <column name="text" type="varchar(800)">
                 <constraints nullable="false"/>
             </column>
-            <column name="date" type="datetime"  defaultValueDate="current_datetime">
+            <column name="date" type="datetime" defaultValueDate="current_datetime">
                 <constraints nullable="false"/>
             </column>
         </createTable>

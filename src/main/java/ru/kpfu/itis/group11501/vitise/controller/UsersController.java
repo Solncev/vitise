@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import ru.kpfu.itis.group11501.vitise.model.Colleagues;
 import ru.kpfu.itis.group11501.vitise.model.DirectionOfScientificActivity;
 import ru.kpfu.itis.group11501.vitise.model.News;
 import ru.kpfu.itis.group11501.vitise.model.User;
 import ru.kpfu.itis.group11501.vitise.service.*;
+import ru.kpfu.itis.group11501.vitise.util.FileUploader;
 
-import java.io.File;
 import java.util.*;
 
 /**
@@ -29,14 +30,19 @@ public class UsersController {
     private final ColleaguesService colleaguesService;
     private final DirectionOfScientificActivityService directionOfScientificActivityService;
     private final DirectionOfScientificActivityUserService directionOfScientificActivityUserService;
+    private final StudentService studentService;
     private final NewsService newsService;
 
     @Autowired
-    public UsersController(UserService userService, ColleaguesService colleaguesService, DirectionOfScientificActivityService directionOfScientificActivityService, DirectionOfScientificActivityUserService directionOfScientificActivityUserService, NewsService newsService) {
+    public UsersController(UserService userService, ColleaguesService colleaguesService,
+                           DirectionOfScientificActivityService directionOfScientificActivityService,
+                           DirectionOfScientificActivityUserService directionOfScientificActivityUserService,
+                           StudentService studentService, NewsService newsService) {
         this.userService = userService;
         this.colleaguesService = colleaguesService;
         this.directionOfScientificActivityService = directionOfScientificActivityService;
         this.directionOfScientificActivityUserService = directionOfScientificActivityUserService;
+        this.studentService = studentService;
         this.newsService = newsService;
     }
 
@@ -44,6 +50,8 @@ public class UsersController {
     public String userPage(@PathVariable(name = "id") String id, Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userService.findOne(Long.valueOf(id));
+        if (user == null)
+            return "handle404";
         if (Objects.equals(currentUser.getId(), user.getId())) {
             return "redirect:/profile";
         } else if (!Objects.equals(currentUser.getId(), user.getId())) {
@@ -51,29 +59,27 @@ public class UsersController {
             model.addAttribute("state", colleaguesService.getState(c, currentUser, user));
             model.addAttribute("colleagues", c);
         }
+        model.addAttribute("group", studentService.getStudentGroup(user));
         model.addAttribute("userPage", user);
-        model.addAttribute("user", currentUser);
+        model.addAttribute("currentUser", currentUser);
         model.addAttribute("newses", newsService.getAllByAuthor(user));
-        return "user_page";
+        return "profile_user";
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String getProfilePage(Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Colleagues c = colleaguesService.getColleagues(currentUser, currentUser);
-        model.addAttribute("state", colleaguesService.getState(c, currentUser, currentUser));
-        model.addAttribute("colleagues", c);
-        model.addAttribute("userPage", currentUser);
-        model.addAttribute("user", currentUser);
+        model.addAttribute("group", studentService.getStudentGroup(currentUser));
+        model.addAttribute("currentUser", currentUser);
         model.addAttribute("news", new News());
         model.addAttribute("newses", newsService.getAllByAuthor(currentUser));
-        return "user_page";
+        return "profile";
     }
-    
+
     @RequestMapping(value = "/profile/change", method = RequestMethod.GET)
     public String getChangeProfile(Model model, @RequestParam(value = "error", required = false) Boolean error) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("user", currentUser);
+        model.addAttribute("currentUser", currentUser);
         model.addAttribute("isWorker", userService.isWorker(currentUser));
         Map<String, String> directions = new HashMap<>();
         List<DirectionOfScientificActivity> directionList = directionOfScientificActivityService.findAll();
@@ -92,16 +98,23 @@ public class UsersController {
 
     @RequestMapping(value = "/profile/change", method = RequestMethod.POST)
     public Object ChangeProfile(Model model,
-                                @RequestParam("photo") File file,
+                                @RequestParam("file") MultipartFile file,
                                 @RequestParam Map<String, String> allRequestParams) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (!allRequestParams.get("password").equals("")) {
-            if (encoder.matches(allRequestParams.get("password"), currentUser.getPassword())) {
+            if (encoder.matches(allRequestParams.get("password"), currentUser.getPassword()) &&
+                    Objects.equals(allRequestParams.get("newPassword"), allRequestParams.get("newPasswordConfirmation"))) {
                 currentUser.setPassword(encoder.encode(allRequestParams.get("newPassword")));
             }
         }
-        if (file != null)
-            currentUser.setPhotoName(file.getAbsolutePath());
+        currentUser.setName(allRequestParams.get("name"));
+        currentUser.setSurname(allRequestParams.get("surname"));
+        currentUser.setThirdName(allRequestParams.get("thirdName"));
+        currentUser.setTelephoneNumber(allRequestParams.get("telephoneNumber"));
+        currentUser.setEmail(allRequestParams.get("email"));
+
+        String name = FileUploader.uploadFile(file, "avatars");
+        currentUser.setPhotoName(name);
         currentUser.setDescription(allRequestParams.get("description"));
         List<String> directions = new ArrayList<>();
         List<DirectionOfScientificActivity> directionOfScientificActivities = directionOfScientificActivityService.findAll();

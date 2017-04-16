@@ -16,7 +16,7 @@
     </form>
     <p>Number of participants: ${event.subscriptionsCount}</p>
     <i><a href="#">${event.author.name} ${event.author.thirdName}</a>, ${event.pubDate}</i>
-    <#if current_user.id = event.author.id>
+    <#if currentUser.id = event.author.id>
         <form action="/events/remove" method="post">
             <input name="event_id" type="hidden" value="${event.id}"/>
             <input class="btn btn-info btn-outline" type="submit" value="Remove!">

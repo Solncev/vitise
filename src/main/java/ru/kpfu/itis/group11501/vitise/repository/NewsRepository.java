@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface NewsRepository extends JpaRepository<News, Long> {
     List<News> getAllByAuthorId(Long id);
+
+    List<News> getAllByIsPersonal(boolean isPersonal);
 }

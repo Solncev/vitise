@@ -1,4 +1,3 @@
-<#--event create page-->
 <#assign sf=JspTaglibs["http://www.springframework.org/tags/form"]>
 <title>events | create</title>
 
@@ -21,5 +20,4 @@
     <div class="form-group">
         <input class="btn btn-info btn-outline" type="submit" value="создать">
     </div>
-</fieldset>
-</@sf.form>
+</fieldset></@sf.form>

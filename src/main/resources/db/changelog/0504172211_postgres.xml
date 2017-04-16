@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="0504172211_1" author="korgutlova">
+        <createTable tableName="communication_relations">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_first" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_second" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="0504172211_2" author="korgutlova">
+        <addForeignKeyConstraint baseTableName="communication_relations"
+                                 baseColumnNames="id_first"
+                                 constraintName="id_first_users_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="communication_relations"
+                                 baseColumnNames="id_second"
+                                 constraintName="id_second_users_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+    <changeSet id="0504172211_3" author="korgutlova">
+        <createTable tableName="users_messages">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="message" type="varchar(800)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="communication_relationsid" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="usersid" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="0504172211_4" author="korgutlova">
+        <addForeignKeyConstraint baseTableName="users_messages"
+                                 baseColumnNames="communication_relationsid"
+                                 constraintName="communication_relationsid_communication_relations_fk"
+                                 referencedTableName="communication_relations"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="users_messages"
+                                 baseColumnNames="usersid"
+                                 constraintName="usersid_users_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+    <changeSet id="0504172211_5" author="korgutlova">
+        <dropTable tableName="messages"/>
+    </changeSet>
+    <changeSet id="0504172211_6" author="svintenok">
+        <addColumn tableName="communication_relations">
+            <column name="creation_date" type="datetime" defaultValueDate="current_datetime"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="0504172211_7" author="svintenok">
+        <createTable tableName="users_message_reading_log">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="communication_relation_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="datetime" defaultValueDate="current_datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="0504172211_8" author="svintenok">
+        <addForeignKeyConstraint baseTableName="users_message_reading_log"
+                                 baseColumnNames="communication_relation_id"
+                                 constraintName="communication_relation_fk"
+                                 referencedTableName="communication_relations"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="users_message_reading_log"
+                                 baseColumnNames="user_id"
+                                 constraintName="user_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

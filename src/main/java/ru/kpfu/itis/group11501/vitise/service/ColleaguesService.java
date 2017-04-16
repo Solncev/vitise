@@ -24,6 +24,8 @@ public interface ColleaguesService {
 
     List<User> getColleagueUsers(User user);
 
+    int getRequestsCount(User user);
+
     //1-друзья, 0 - не друзья, -1 - отправил заявку уже, -2 - подтвердить
     int getState(Colleagues colleagues, User userOne, User userTwo);
 

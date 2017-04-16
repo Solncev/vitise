@@ -42,7 +42,11 @@ public class AuthProviderImpl implements AuthenticationProvider {
 
         String password = authentication.getCredentials().toString();
         if (!encoder.matches(password, user.getPassword())) {
-            throw new BadCredentialsException("Invalid password");
+            throw new BadCredentialsException("Invalid password!");
+        } else if (user.isActive() == null) {
+            throw new BadCredentialsException("User registration is not confirmed by the deanery!");
+        } else if (!user.isActive()) {
+            throw new BadCredentialsException("User is blocked!");
         }
 
         List<GrantedAuthority> authorities = new ArrayList<>();
